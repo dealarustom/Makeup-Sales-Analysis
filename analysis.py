@@ -1,5 +1,6 @@
 import pandas as pd
 df= pd.read_csv('makeup_sales_dataset_2025.csv')
+pop_df = pd.read_csv('population_data.csv')
 
 print("Shape:", df.shape)
 print("\nFirst 5 rows:")
@@ -65,3 +66,54 @@ plt.title('Revenue by Sales Channel')
 plt.savefig('revenue_by_channel.png')
 plt.show()
 print("Chart 3 saved!")
+
+
+country_name_mapping = {
+    'USA': 'United States',
+    'UK': 'United Kingdom',
+    'UAE': 'United Arab Emirates',
+    'Saudi Arabia': 'Saudi Arabia',
+    'Germany': 'Germany',
+    'France': 'France',
+    'India': 'India',
+    'Canada': 'Canada' }
+
+# Apply the mapping to the sales dataset
+df['Country'] = df['Country'].replace(country_name_mapping)
+
+# Calculate total revenue by country
+country_revenue = df.groupby('Country')['Revenue_USD'].sum().reset_index()
+
+# Keep only the columns we need from population dataset
+pop_df = pop_df[['Country (or dependency)', 'Population 2025']]
+
+# Rename population country column to match
+pop_df = pop_df.rename(columns={'Country (or dependency)': 'Country'})
+
+# Merge the two datasets
+merged_df = country_revenue.merge(pop_df, on='Country')
+
+# Calculate revenue per capita
+merged_df['Revenue_Per_Capita'] = merged_df['Revenue_USD'] / merged_df['Population 2025']
+
+print(merged_df)
+
+# ================================
+# CHART - Revenue Per Capita by Country
+# ================================
+plt.figure(figsize=(10, 6))
+merged_df.sort_values('Revenue_Per_Capita', ascending=False).plot(
+    kind='bar',
+    x='Country',
+    y='Revenue_Per_Capita',
+    color='mediumpurple',
+    legend=False
+)
+plt.title('Makeup Revenue Per Capita by Country')
+plt.xlabel('Country')
+plt.ylabel('Revenue Per Capita (USD)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('revenue_per_capita.png')
+plt.show()
+print("Per capita chart saved!")
