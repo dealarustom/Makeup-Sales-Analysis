@@ -117,3 +117,24 @@ plt.tight_layout()
 plt.savefig('revenue_per_capita.png')
 plt.show()
 print("Per capita chart saved!")
+
+# ================================
+# CHART 5 - Revenue Trends Over Time
+# ================================
+
+# Convert Date column to datetime format so Python understands it as a date
+df['Date'] = pd.to_datetime(df['Date'])
+
+# Group by month and sum revenue
+monthly_revenue = df.groupby(df['Date'].dt.to_period('M'))['Revenue_USD'].sum()
+
+plt.figure(figsize=(12, 6))
+monthly_revenue.plot(kind='line', color='hotpink', marker='o')
+plt.title('Revenue Trends Over Time')
+plt.xlabel('Month')
+plt.ylabel('Revenue (USD)')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('revenue_over_time.png')
+plt.show()
+print("Revenue trends chart saved!")
