@@ -99,7 +99,7 @@ merged_df['Revenue_Per_Capita'] = merged_df['Revenue_USD'] / merged_df['Populati
 print(merged_df)
 
 # ================================
-# CHART - Revenue Per Capita by Country
+# CHART 4- Revenue Per Capita by Country
 # ================================
 plt.figure(figsize=(10, 6))
 merged_df.sort_values('Revenue_Per_Capita', ascending=False).plot(
