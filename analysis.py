@@ -138,3 +138,19 @@ plt.tight_layout()
 plt.savefig('revenue_over_time.png')
 plt.show()
 print("Revenue trends chart saved!")
+
+# ================================
+# CHART 6 - Best Selling Products by Units Sold
+# ================================
+units_by_product = df.groupby('Product_Type')['Units_Sold'].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(10, 6))
+units_by_product.plot(kind='bar', color='mediumpurple')
+plt.title('Best Selling Products by Units Sold')
+plt.xlabel('Product Type')
+plt.ylabel('Total Units Sold')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.savefig('units_by_product.png')
+plt.show()
+print("Units by product chart saved!")
