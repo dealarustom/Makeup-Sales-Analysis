@@ -154,3 +154,17 @@ plt.tight_layout()
 plt.savefig('units_by_product.png')
 plt.show()
 print("Units by product chart saved!")
+
+# ================================
+# CHART 7 - Revenue by Payment Method
+# ================================
+payment_revenue = df.groupby('Payment_Method')['Revenue_USD'].sum().sort_values(ascending=False)
+
+plt.figure(figsize=(8, 8))
+payment_revenue.plot(kind='pie', autopct='%1.1f%%', colors=['hotpink', 'mediumpurple', 'lightblue', 'lightgreen'])
+plt.title('Revenue by Payment Method')
+plt.ylabel('')
+plt.tight_layout()
+plt.savefig('revenue_by_payment.png')
+plt.show()
+print("Payment method chart saved!")
