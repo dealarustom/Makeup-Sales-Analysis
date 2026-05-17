@@ -168,3 +168,23 @@ plt.tight_layout()
 plt.savefig('revenue_by_payment.png')
 plt.show()
 print("Payment method chart saved!")
+
+# ================================
+# KEY METRICS / KPIs
+# ================================
+
+print("=" * 50)
+print("MAKEUP SALES - KEY METRICS SUMMARY")
+print("=" * 50)
+
+# Total revenue
+total_revenue = df['Revenue_USD'].sum()
+print(f"\nTotal Revenue: ${total_revenue:,.2f}")
+
+# Total units sold
+total_units = df['Units_Sold'].sum()
+print(f"Total Units Sold: {total_units:,}")
+
+# Total number of transactions
+total_transactions = len(df)
+print(f"Total Transactions: {total_transactions:,}")
