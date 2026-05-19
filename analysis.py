@@ -204,3 +204,11 @@ print(f"\nBest Performing Brand: {best_brand}")
 # Best performing product
 best_product = df.groupby('Product_Type')['Revenue_USD'].sum().idxmax()
 print(f"Best Performing Product: {best_product}")
+
+# Best performing country
+best_country = df.groupby('Country')['Revenue_USD'].sum().idxmax()
+print(f"Best Performing Country: {best_country}")
+
+# Best performing sales channel
+best_channel = df.groupby('Sales_Channel')['Revenue_USD'].sum().idxmax()
+print(f"Best Performing Sales Channel: {best_channel}")
