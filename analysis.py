@@ -188,3 +188,11 @@ print(f"Total Units Sold: {total_units:,}")
 # Total number of transactions
 total_transactions = len(df)
 print(f"Total Transactions: {total_transactions:,}")
+
+# Average revenue per transaction
+avg_transaction = df['Revenue_USD'].mean()
+print(f"Average Revenue Per Transaction: ${avg_transaction:,.2f}")
+
+# Average units per transaction
+avg_units = df['Units_Sold'].mean()
+print(f"Average Units Per Transaction: {avg_units:,.2f}")
