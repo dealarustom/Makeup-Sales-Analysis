@@ -212,3 +212,7 @@ print(f"Best Performing Country: {best_country}")
 # Best performing sales channel
 best_channel = df.groupby('Sales_Channel')['Revenue_USD'].sum().idxmax()
 print(f"Best Performing Sales Channel: {best_channel}")
+
+# Most popular payment method
+best_payment = df.groupby('Payment_Method')['Revenue_USD'].sum().idxmax()
+print(f"Most Popular Payment Method (by revenue): {best_payment}")
