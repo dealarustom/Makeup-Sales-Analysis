@@ -196,3 +196,11 @@ print(f"Average Revenue Per Transaction: ${avg_transaction:,.2f}")
 # Average units per transaction
 avg_units = df['Units_Sold'].mean()
 print(f"Average Units Per Transaction: {avg_units:,.2f}")
+
+# Best performing brand
+best_brand = df.groupby('Brand')['Revenue_USD'].sum().idxmax()
+print(f"\nBest Performing Brand: {best_brand}")
+
+# Best performing product
+best_product = df.groupby('Product_Type')['Revenue_USD'].sum().idxmax()
+print(f"Best Performing Product: {best_product}")
